@@ -29,6 +29,13 @@ services:
      - backend
     command: ["--acl-add", "app"]
 
+  ssl:
+    build:
+      context: .
+      dockerfile: Dockerfile-nginx-ssl-proxy
+    ports:
+     - "8443:443"
+
 ## DEBUG??
 # In need of debugging all request going to Varnish, use varnishlog, example:
 #   docker-compose exec varnish varnishlog -c -i ReqURL,ReqMethod -I ReqHeader:xkey
